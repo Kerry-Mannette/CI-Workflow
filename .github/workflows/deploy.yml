@@ -35,7 +35,7 @@ jobs:
 
       - name: Execute PHP script
         run: |
-          php php/index.php > output.txt
+          php index.php > output.txt
           test -f output.txt
           echo "PHP executed successfully"
 
