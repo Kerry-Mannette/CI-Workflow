@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Host
 
 on:
   push:
