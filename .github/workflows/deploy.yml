@@ -1,4 +1,4 @@
-name: Deploy to Host
+name: Deploy to Byethost
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: Verify required files exist
         run: |
           set -euo pipefail
-          test -f index.php
+          test -f php/index.php
           test -f php/process-forms.php
           test -f js/process-forms.js
           test -f css/style.css
@@ -40,7 +40,7 @@ jobs:
           echo "PHP executed successfully"
 
   deploy:
-    name: Deploy to andreragbir.byethost5.com
+    name: Deploy to deployment.byethost7.com
     runs-on: ubuntu-latest
     needs: build-and-test
     steps:
