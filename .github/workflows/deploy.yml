@@ -31,7 +31,7 @@ jobs:
           echo "All required files found"
 
       - name: PHP Lint Check
-        run: php -l php/index.php
+        run: php -l index.php
 
       - name: Execute PHP script
         run: |
