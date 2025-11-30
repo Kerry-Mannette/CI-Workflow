@@ -1,0 +1,74 @@
+/* Basic form layout */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 24px;
+	line-height: 1.4;
+	color: #222;
+}
+
+form {
+	max-width: 480px;
+	padding: 12px 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	background: #fafafa;
+}
+
+label {
+	display: block;
+	margin-top: 8px;
+	font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"] {
+	width: 100%;
+	padding: 8px 10px;
+	margin-top: 4px;
+	box-sizing: border-box;
+	border: 1px solid #cfcfcf;
+	border-radius: 4px;
+}
+
+input[type="submit"] {
+	margin-top: 12px;
+	padding: 8px 14px;
+	background: #0078d4;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background: #005ea6;
+}
+
+/* Feedback spans under inputs */
+.feedback {
+	display: block;
+	margin-top: 6px;
+	font-size: 0.95rem;
+	min-height: 1.1em;
+}
+
+/* General message area */
+#general-messages {
+	margin-bottom: 12px;
+}
+
+#general-messages p {
+	margin: 6px 0;
+	padding: 8px 10px;
+	border-radius: 4px;
+	background: rgba(0,0,0,0.03);
+}
+
+/* Specific colors for feedback (inline styles in JS/PHP will override as needed) */
+.feedback.success { color: #0a6b18; }
+.feedback.error   { color: #b00020; }
+
+@media (max-width: 520px) {
+	form { padding: 10px; }
+}
+
