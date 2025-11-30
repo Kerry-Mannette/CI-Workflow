@@ -24,7 +24,7 @@ jobs:
       - name: Verify required files exist
         run: |
           set -euo pipefail
-          test -f php/index.php
+          test -f index.php
           test -f php/process-forms.php
           test -f js/process-forms.js
           test -f css/style.css
