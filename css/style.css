@@ -1,17 +1,28 @@
 /* Basic form layout */
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	margin: 24px;
+	padding: 24px;
 	line-height: 1.4;
 	color: #222;
+	min-height: 100vh;
+}
+
+
+body > h1,
+body > p {
+	text-align: center;
+	margin: 0 0 12px;
 }
 
 form {
+	width: 100%;
 	max-width: 480px;
-	padding: 12px 16px;
+	margin: 18px auto 0;
+	padding: 16px 20px;
 	border: 1px solid #e0e0e0;
 	border-radius: 6px;
 	background: #fafafa;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
 label {
@@ -53,8 +64,12 @@ input[type="submit"]:hover {
 }
 
 /* General message area */
+/* center general messages above the form */
 #general-messages {
-	margin-bottom: 12px;
+	margin: 0 auto 12px;
+	width: 100%;
+	max-width: 480px;
+	text-align: center;
 }
 
 #general-messages p {
