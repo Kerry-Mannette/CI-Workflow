@@ -1,5 +1,5 @@
 <?php
-require_once "db_connect.php";  // include the connection file
+require_once __DIR__ . "/db_connect.php";  // include the connection file
 
 $nameFeedback = '';
 $emailFeedback = '';
