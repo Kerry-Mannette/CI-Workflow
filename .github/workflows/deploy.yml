@@ -67,4 +67,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
-          local-dir: ./   # adjust if you only want to deploy a subfolder
+          local-dir: ./
+          server-dir: /htdocs
