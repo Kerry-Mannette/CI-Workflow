@@ -26,12 +26,20 @@ jobs:
           set -euo pipefail
           test -f index.php
           test -f php/process-forms.php
+          test -f php/db_connect.php
           test -f js/process-forms.js
+          test -f js/success-modal.js
           test -f css/style.css
           echo "All required files found"
 
       - name: PHP Lint Check
-        run: php -l index.php
+        run: |
+          set -euo pipefail
+          echo "Checking PHP syntax for all tracked .php files"
+          for f in $(git ls-files "*.php"); do
+            echo "Linting $f"
+            php -l "$f"
+          done
 
   deploy:
     name: Deploy to deployment.byethost7.com
