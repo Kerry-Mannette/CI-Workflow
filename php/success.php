@@ -3,13 +3,12 @@ session_start();
 
 // Check if success data exists in session
 if (!isset($_SESSION['success_data'])) {
-    header("Location: ./index.php");
+    header("Location: ../index.php");
     exit;
 }
 
-$name = $_SESSION['user_name'];
-$email = $_SESSION['user_email'];
-
+$name = $_SESSION['name'];
+$email = $_SESSION['email'];
 
 // Clear success data from session after displaying
 unset($_SESSION['success_data']);
@@ -23,9 +22,10 @@ unset($_SESSION['success_data']);
     <title>Success - CI StartUp</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="success-page">
     <div class="success-container">
-        <h1>Successfully Submitted!</h1>
+        <h1>✓ Successfully Submitted!</h1>
+        <p>Thank you for submitting the form.</p>
         <div class="success-message">
             <p>Hello, <strong><?php echo htmlspecialchars($name); ?></strong>!</p>
             <p>Your form has been successfully submitted with the following information:</p>
@@ -33,7 +33,7 @@ unset($_SESSION['success_data']);
                 <li><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></li>
                 <li><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></li>
             </ul>
-            <a href="index.php" class="btn-home">Submit Another</a>
+            <a href="../index.php" class="btn-home">Submit Another</a>
         </div>
     </div>
 </body>
