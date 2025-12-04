@@ -19,10 +19,11 @@ if ($isCI) {
     $conn = new MockConnection();
 } else {
     // Real connection for production
-    $servername = getenv("DB_SERVER") ?: "localhost";
-    $username   = getenv("DB_USERNAME") ?: "YOUR_VPANEL_USERNAME";
-    $password   = getenv("DB_PASSWORD") ?: "YOUR_VPANEL_PASSWORD";
-    $database   = getenv("DB_NAME")     ?: "YOUR_VPANEL_DATABASE";
+    $servername = getenv("DB_SERVER") ?: "sql103.byethost7.com";
+    $username   = getenv("DB_USERNAME") ?: "b7_40556162";
+    $password   = getenv("DB_PASSWORD") ?: "deploymenT1234";
+    $database   = getenv("DB_NAME")     ?: "b7_40556162_deployment";
+
 
     $conn = new mysqli($servername, $username, $password, $database);
 
