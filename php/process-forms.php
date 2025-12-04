@@ -1,9 +1,12 @@
 <?php
+require_once "db_connect.php";  // include the connection file
 
 $nameFeedback = '';
 $emailFeedback = '';
 $generalMessages = [];
 $processedData = ['name' => null, 'email' => null];
+$successFlag = false;
+$dbUsername = null;
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $name  = isset($_POST['name']) ? trim($_POST['name']) : '';
@@ -35,14 +38,45 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $emailFeedback = implode(' ', $emailErrors);
     }
 
+    // If no validation errors, insert into database
     if (empty($nameErrors) && empty($emailErrors)) {
-        // Success: set processed data and messages
         $processedData['name'] = htmlspecialchars($name);
         $processedData['email'] = htmlspecialchars($email);
-        $generalMessages[] = ['type' => 'success', 'text' => 'Form submitted successfully!'];
-        $generalMessages[] = ['type' => 'success', 'text' => 'Name: ' . $processedData['name']];
-        $generalMessages[] = ['type' => 'success', 'text' => 'Email: ' . $processedData['email']];
+
+        $stmt = $conn->prepare("INSERT INTO submissions (name, email) VALUES (?, ?)");
+        if ($stmt) {
+            $stmt->bind_param("ss", $name, $email);
+            if ($stmt->execute()) {
+                $successFlag = true;
+                $generalMessages[] = ['type' => 'success', 'text' => 'Form submitted successfully!'];
+                $generalMessages[] = ['type' => 'success', 'text' => 'Name: ' . $processedData['name']];
+                $generalMessages[] = ['type' => 'success', 'text' => 'Email: ' . $processedData['email']];
+
+                // Try to read username from a users table using the email
+                if ($conn) {
+                    $u = $conn->prepare("SELECT username FROM users WHERE email = ? LIMIT 1");
+                    if ($u) {
+                        $u->bind_param("s", $email);
+                        if ($u->execute()) {
+                            $res = $u->get_result();
+                            if ($res && $row = $res->fetch_assoc()) {
+                                $dbUsername = $row['username'];
+                            }
+                            if ($res) { $res->free(); }
+                        }
+                        $u->close();
+                    }
+                }
+            } else {
+                $generalMessages[] = ['type' => 'error', 'text' => 'Database error: ' . $stmt->error];
+            }
+            $stmt->close();
+        } else {
+            $generalMessages[] = ['type' => 'error', 'text' => 'Failed to prepare database statement.'];
+        }
     }
 }
 
+$conn->close();
+// Expose $successFlag and $dbUsername for index.php
 ?>

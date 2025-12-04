@@ -5,10 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function(event) {
         var nameFeedback = document.getElementById('name-feedback');
         var emailFeedback = document.getElementById('email-feedback');
-        var generalMessages = document.getElementById('general-messages');
         nameFeedback.textContent = '';
         emailFeedback.textContent = '';
-        // keep generalMessages as-is so server messages (after submit) remain
 
         var name = document.getElementById('name').value.trim();
         var email = document.getElementById('email').value.trim();

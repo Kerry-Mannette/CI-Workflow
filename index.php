@@ -9,16 +9,15 @@
 </head>
 <body>
 
-    <h1>Welcome to CI StartUp</h1>
-    <p>This is the main page of the CI StartUp project.</p>
+    <h1>Welcome to CI Workflow</h1>
+    <p>This is the main page of the CI Workflow project.</p>
 
-    <div id="general-messages">
-        <?php if (!empty($generalMessages) && is_array($generalMessages)): ?>
-            <?php foreach ($generalMessages as $gm): ?>
-                <p style="color:<?php echo ($gm['type'] === 'success') ? 'green' : 'red'; ?>"><?php echo htmlspecialchars($gm['text']); ?></p>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
+    <!-- general-messages removed per request -->
+
+    <!-- Hidden success marker for JS to trigger popup -->
+    <?php if (!empty($successFlag)): ?>
+        <div id="success-flag" data-username="<?php echo htmlspecialchars($dbUsername ?? $processedData['name'] ?? ''); ?>" style="display:none"></div>
+    <?php endif; ?>
 
     <form id="myForm" method="post" novalidate>
         <label for="name">Name:</label>
@@ -34,6 +33,16 @@
         <input type="submit" value="Submit">
     </form>
 
+    <!-- Simple popup modal -->
+    <div id="success-modal" class="modal" style="display:none">
+        <div class="modal-content">
+            <span class="close" id="modal-close" aria-label="Close">&times;</span>
+            <h2>Welcome!</h2>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
     <script src="js/process-forms.js"></script>
+    <script src="js/success-modal.js"></script>
 </body>
 </html>
