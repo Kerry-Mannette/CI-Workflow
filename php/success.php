@@ -7,8 +7,8 @@ if (!isset($_SESSION['success_data'])) {
     exit;
 }
 
-$name = $_SESSION['name'];
-$email = $_SESSION['email'];
+$name = $_SESSION['user_name'];
+$email = $_SESSION['user_email'];
 
 // Clear success data from session after displaying
 unset($_SESSION['success_data']);
@@ -24,7 +24,7 @@ unset($_SESSION['success_data']);
 </head>
 <body class="success-page">
     <div class="success-container">
-        <h1>✓ Successfully Submitted!</h1>
+        <h1>Successfully Submitted!</h1>
         <p>Thank you for submitting the form.</p>
         <div class="success-message">
             <p>Hello, <strong><?php echo htmlspecialchars($name); ?></strong>!</p>
