@@ -6,7 +6,6 @@ $nameFeedback = '';
 $emailFeedback = '';
 $generalMessages = [];
 $processedData = ['name' => null, 'email' => null];
-$dbUsername = null;
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $name  = isset($_POST['name']) ? trim($_POST['name']) : '';
@@ -47,29 +46,23 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         if ($stmt) {
             $stmt->bind_param("ss", $name, $email);
             if ($stmt->execute()) {
-                // Store success data in session
-                $_SESSION['success_data'] = [
-                    'name' => $processedData['name'],
-                    'email' => htmlspecialchars($email),
-                    'username' => ''
-                ];
 
-                // Try to read username from a users table using the email
-                if ($conn) {
-                    $u = $conn->prepare("SELECT username FROM users WHERE email = ? LIMIT 1");
-                    if ($u) {
-                        $u->bind_param("s", $email);
-                        if ($u->execute()) {
-                            $res = $u->get_result();
-                            if ($res && $row = $res->fetch_assoc()) {
-                                $_SESSION['success_data']['username'] = $row['username'];
-                            }
-                            if ($res) { $res->free(); }
+                // Retrieve the name back from submissions table using the email
+                $u = $conn->prepare("SELECT name FROM submissions WHERE email = ? LIMIT 1");
+                if ($u) {
+                    $u->bind_param("s", $email);
+                    if ($u->execute()) {
+                        $res = $u->get_result();
+                        if ($res && $row = $res->fetch_assoc()) {
+                            $_SESSION['success_data'] = true;
+                            $_SESSION['user_name']    = $row['name'];
+                            $_SESSION['user_email']   = $email;
                         }
-                        $u->close();
+                        if ($res) { $res->free(); }
                     }
+                    $u->close();
                 }
-                
+
                 // Redirect to success page
                 $conn->close();
                 header("Location: php/success.php");
@@ -85,5 +78,4 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 }
 
 $conn->close();
-// Expose $successFlag and $dbUsername for index.php
 ?>
