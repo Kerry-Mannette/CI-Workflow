@@ -68,4 +68,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           local-dir: ./
-          server-dir: /htdocs
+          server-dir: /htdocs/
+    
