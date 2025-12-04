@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                 
                 // Redirect to success page
                 $conn->close();
-                header("Location: success.php");
+                header("Location: php/success.php");
                 exit;
             } else {
                 $generalMessages[] = ['type' => 'error', 'text' => 'Database error: ' . $stmt->error];
