@@ -18,6 +18,7 @@ if ($isCI) {
 
     $conn = new MockConnection();
 } else {
+    
     // Real connection for production
     $servername = getenv("DB_SERVER") ?: "sql103.byethost7.com";
     $username   = getenv("DB_USERNAME") ?: "b7_40556162";
