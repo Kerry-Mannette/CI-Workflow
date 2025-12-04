@@ -1,11 +1,11 @@
 <?php
+session_start();
 require_once __DIR__ . "/db_connect.php";  // include the connection file
 
 $nameFeedback = '';
 $emailFeedback = '';
 $generalMessages = [];
 $processedData = ['name' => null, 'email' => null];
-$successFlag = false;
 $dbUsername = null;
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
@@ -47,10 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         if ($stmt) {
             $stmt->bind_param("ss", $name, $email);
             if ($stmt->execute()) {
-                $successFlag = true;
-                $generalMessages[] = ['type' => 'success', 'text' => 'Form submitted successfully!'];
-                $generalMessages[] = ['type' => 'success', 'text' => 'Name: ' . $processedData['name']];
-                $generalMessages[] = ['type' => 'success', 'text' => 'Email: ' . $processedData['email']];
+                // Store success data in session
+                $_SESSION['success_data'] = [
+                    'name' => $processedData['name'],
+                    'email' => htmlspecialchars($email),
+                    'username' => ''
+                ];
 
                 // Try to read username from a users table using the email
                 if ($conn) {
@@ -60,13 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
                         if ($u->execute()) {
                             $res = $u->get_result();
                             if ($res && $row = $res->fetch_assoc()) {
-                                $dbUsername = $row['username'];
+                                $_SESSION['success_data']['username'] = $row['username'];
                             }
                             if ($res) { $res->free(); }
                         }
                         $u->close();
                     }
                 }
+                
+                // Redirect to success page
+                $conn->close();
+                header("Location: success.php");
+                exit;
             } else {
                 $generalMessages[] = ['type' => 'error', 'text' => 'Database error: ' . $stmt->error];
             }

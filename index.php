@@ -14,11 +14,6 @@
 
     <!-- general-messages removed per request -->
 
-    <!-- Hidden success marker for JS to trigger popup -->
-    <?php if (!empty($successFlag)): ?>
-        <div id="success-flag" data-username="<?php echo htmlspecialchars($dbUsername ?? $processedData['name'] ?? ''); ?>" style="display:none"></div>
-    <?php endif; ?>
-
     <form id="myForm" method="post" novalidate>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -33,16 +28,6 @@
         <input type="submit" value="Submit">
     </form>
 
-    <!-- Simple popup modal -->
-    <div id="success-modal" class="modal" style="display:none">
-        <div class="modal-content">
-            <span class="close" id="modal-close" aria-label="Close">&times;</span>
-            <h2>Welcome!</h2>
-            <p id="modal-message"></p>
-        </div>
-    </div>
-
     <script src="js/process-forms.js"></script>
-    <script src="js/success-modal.js"></script>
 </body>
 </html>

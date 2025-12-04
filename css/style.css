@@ -110,3 +110,65 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
+/* Success page styles */
+.success-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.success-container h1 {
+	color: var(--color-success);
+	font-size: 32px;
+	margin-bottom: 24px;
+}
+
+.success-message {
+	background: #f0fdf4;
+	border: 2px solid var(--color-success);
+	border-radius: 8px;
+	padding: 24px;
+	margin-bottom: 24px;
+}
+
+.success-message p {
+	margin: 12px 0;
+	font-size: 16px;
+}
+
+.success-message p strong {
+	color: var(--color-success);
+}
+
+.success-message ul {
+	list-style: none;
+	padding: 16px 0;
+	text-align: left;
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.success-message li {
+	padding: 8px;
+	border-bottom: 1px solid #d1fae5;
+}
+
+.success-message li:last-child {
+	border-bottom: none;
+}
+
+.btn-home {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: var(--color-primary);
+	color: white;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+	background-color: var(--color-primary-hover);
+}

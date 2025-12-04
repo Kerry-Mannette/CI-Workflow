@@ -25,10 +25,10 @@ jobs:
         run: |
           set -euo pipefail
           test -f index.php
+          test -f php/success.php
           test -f php/process-forms.php
           test -f php/db_connect.php
           test -f js/process-forms.js
-          test -f js/success-modal.js
           test -f css/style.css
           echo "All required files found"
 
