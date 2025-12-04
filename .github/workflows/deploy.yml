@@ -33,6 +33,12 @@ jobs:
       - name: PHP Lint Check
         run: php -l index.php
 
+      - name: Execute PHP script
+        run: |
+          php index.php > output.txt
+          test -f output.txt
+          echo "PHP executed successfully"
+
   deploy:
     name: Deploy to deployment.byethost7.com
     runs-on: ubuntu-latest
@@ -53,4 +59,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
-          local-dir: ./   # adjust if needed
+          local-dir: ./   # adjust if you only want to deploy a subfolder
