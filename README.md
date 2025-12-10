@@ -1,4 +1,4 @@
-# CI-Workflow (CI-StartUp)
+# CI-Workflow 
 
 A small PHP form-processing demo. This repository contains a simple front-end form and server-side PHP processing with a minimal DB connection helper.
 
