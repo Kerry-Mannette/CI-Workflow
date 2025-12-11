@@ -5,7 +5,7 @@ A small PHP form-processing demo. This repository contains a simple front-end fo
 ## Project Purpose
 
 - Demonstration of a PHP form workflow with client-side validation and server-side processing.
-- Intended for local development and learning about CI/deployment basics for the course.
+- Intended for local development and learning about CI/deployment basics.
 
 ## Prerequisites
 
