@@ -27,12 +27,12 @@ php -S localhost:8000 -t .
 
 ## File Structure
 
-- `index.php` - main page with the form.
-- `css/style.css` - styles.
-- `js/process-forms.js` - client-side form handling.
-- `php/process-forms.php` - server-side form processing logic.
-- `php/db_connect.php` - database connection helper (edit to configure DB credentials).
-- `success.php` - success landing page after form submission.
+- `index.php` — main page with the form.
+- `css/style.css` — styles.
+- `js/process-forms.js` — client-side form handling.
+- `php/process-forms.php` — server-side form processing logic.
+- `php/db_connect.php` — database connection helper (edit to configure DB credentials).
+- `success.php` — success landing page after form submission.
 
 ## Database Setup
 
